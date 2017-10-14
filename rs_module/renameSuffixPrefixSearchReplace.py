@@ -2,21 +2,23 @@
 import pymel.core as pm
 
 
-def suffixName():
-    suffixName = ""
+def suffixName(suffixName):
+    #suffixName = ""
     obj = pm.ls(sl=True)
     for i in range(len(obj)):
-        pm.rename(obj[i],obj[i]+suffixName)
+        pm.rename(obj[i],obj[i]+'_'+suffixName)
 
-def prefixName():
-    prefixName = ""
+def prefixName(prefixName):
+    #prefixName = ""
+    obj = pm.ls(sl=True)
     for i in range(len(obj)):
-        pm.rename(obj[i],prefixName+obj[i])
+        pm.rename(obj[i],prefixName+'_'+obj[i])
 
-def search_replace():
-    search = ""
-    replace = ""
-    obj = pm.ls("*" + search + "*")
+def search_replace(search = None, replace = None):
+    #search = ""
+    #replace = ""
+    #obj = pm.ls("*" + search + "*")
+    obj = pm.ls(sl=True)
     for i in range(len(obj)):
         pm.rename(obj[i],obj[i].replace(search, replace))
 

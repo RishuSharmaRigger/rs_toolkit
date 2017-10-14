@@ -86,6 +86,9 @@ class testWin(MayaQWidgetDockableMixin, QtGui.QMainWindow, rs_riggingtool_ui.rs_
         self.pushButton_66.clicked.connect(self.setRot)
         self.pushButton_67.clicked.connect(self.setScale)
         self.rename_pb.clicked.connect(self.renam)
+        self.searchreplace_pb.clicked.connect(self.searchReplace)
+        self.destination_pb.clicked.connect(self.setdestination)
+        self.add_pb.clicked.connect(self.suffPrefix)
 
     def createuppergroup(self):
         create_upper_grp.create_upper_grp(self.groupname_le.text())
@@ -185,9 +188,26 @@ class testWin(MayaQWidgetDockableMixin, QtGui.QMainWindow, rs_riggingtool_ui.rs_
     def renam(self):
         renameSuffixPrefixSearchReplace.renam(self.rename_le.text())
 
+    def searchReplace(self):
+        search = self.searchname_le.text()
+        replace = self.replacename_le.text()
+        renameSuffixPrefixSearchReplace.search_replace(search,replace)
 
+    def suffixprefix(self):
+        renameSuffixPrefixSearchReplace.suffixName(self.name_le.text())
 
+    def setdestination(self):
+        self.listt = [str(x) for x in pm.ls(sl=True)]
+        self.ctrlname_le.setText(','.join(self.listt))
 
+    def suffPrefix(self):
+        if self.suffix_cb.isChecked():
+            a = renameSuffixPrefixSearchReplace.suffixName(self.name_le.text())
+            renameSuffixPrefixSearchReplace.suffixName(a)
+
+        if self.prefix_cb.isChecked():
+            b = renameSuffixPrefixSearchReplace.prefixName(self.name_le.text())
+            renameSuffixPrefixSearchReplace.prefixName(b)
 
 
 if __name__ == '__main__':
